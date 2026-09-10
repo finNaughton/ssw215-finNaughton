@@ -7,4 +7,4 @@ This semester, I would like to be able to build a simple game that is able to ta
 
 ## Labs
 
-- Lab 2 — connected this repository to my laptop
+- Lab 2 — edited this line on my laptop
