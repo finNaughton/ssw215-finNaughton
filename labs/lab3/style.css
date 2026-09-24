@@ -3,13 +3,13 @@
 }
 
 :root {
-  --bg: #f4efe8;
-  --panel: #ffffff;
-  --text: #1f2430;
-  --muted: #4d5767;
-  --accent: #295ea8;
-  --accent-dark: #1d3f6d;
-  --border: #dfe5ec;
+  --bg: #071a2f;
+  --panel: #123a62;
+  --text: #ffffff;
+  --muted: #d7e4f5;
+  --accent: #7db4ff;
+  --accent-dark: #4f8fe7;
+  --border: rgba(255, 255, 255, 0.2);
 }
 
 html {
@@ -36,6 +36,7 @@ img {
 
 .site-header {
   padding: 48px 0 32px;
+  background: var(--bg);
 }
 
 .hero {
@@ -59,7 +60,7 @@ img {
   letter-spacing: 0.12em;
   font-size: 0.7rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #dfeeff;
 }
 
 h1 {
@@ -113,6 +114,7 @@ h1 {
 
 .projects {
   padding: 32px 0 48px;
+  color: var(--text);
 }
 
 .projects h2 {
@@ -131,7 +133,7 @@ h1 {
 }
 
 .site-footer {
-  background: var(--panel);
+  background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 20px 0;
 }
