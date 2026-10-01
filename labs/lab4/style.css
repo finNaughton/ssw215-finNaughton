@@ -136,7 +136,7 @@
 .project-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 2.5rem; /*Hand edited by FN*/
 }
 
 .card {
