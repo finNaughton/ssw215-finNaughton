@@ -1,0 +1,28 @@
+# SPEC: Developer Portfolio Welcome Page
+## 1. Purpose & Scope
+- A personal portfolio welcome page for Fintan Naughton, a first-year software
+engineering student.
+- Non-Goals: no multi-page routing; no backend; no contact forms.
+## 2. Invariants & Negative Constraints
+- All styling MUST reside in `./style.css` (no inline style="..." attributes).
+- The page MUST NOT load external CSS frameworks or CDNs (no Bootstrap, no Tailwind).
+- The avatar image MUST use the relative path `./assets/avatar.jpg`.
+- The layout MUST collapse into a single vertical column on screens narrower than 768px.
+## 3. UI Content & Interface Contract
+- Hero header: my full name "Fintan Naughton", the subtitle "First year software engineering student interested in the intersection between software and music.", and
+this bio: "a 2-sentence bio".
+- Action link: a button labelled "See my projects" that links to `#projects`.
+- Projects section with id="projects": lists these items: An all purpose digital rotating picture frame containing all student essentials. Research assistant for CLONE, an AI powered refactoring tool.
+- Social link: GitHub (https://github.com/finNaughton) MUST open in a new tab
+(target="_blank").
+- The page background MUST be a dark navy blue
+- The header MUST be a slightly lighter shade of blue and SHOULD have white text
+- The box containing the information in the header MUST be the only part in a lighter blue; the rest of the background surrounding this box of information MUST remain a dark navy blue
+## 4. Acceptance Checklist
+- [x] Valid semantic HTML5: the page uses <header>, <main>, and <footer>.
+- [x] The avatar image has width, height, and alt attributes.
+- [x] No horizontal scrollbar when the browser is narrowed to 375px.
+- [x] The GitHub link opens in a new tab and has rel="noopener".
+- [x] No placeholder links: href="#" appears nowhere.
+## 5. Audit Protocol
+- Inspect the generated code line by line with `git diff --staged` before committing.
