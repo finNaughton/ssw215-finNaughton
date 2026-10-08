@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fintan Naughton | Portfolio</title>
     <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
   </head>
   <body class="page">
     <header class="site-header">
@@ -19,7 +20,7 @@
             I am a first-year software engineering student with a growing interest in building thoughtful, user-focused software.
             I am especially drawn to how technology can support creativity, accessibility, and personal expression.
           </p>
-          <a class="button" href="#projects">See my projects</a>
+          <a class="button project-button" href="#projects">See my projects</a>
           <button class="button contact-button" type="button" disabled>Contact me (coming soon)</button>
         </div>
 
@@ -37,12 +38,17 @@
     <main>
       <section id="projects" class="projects container" aria-labelledby="projects-heading">
         <h2 class="projects-heading" id="projects-heading">Projects</h2>
+        <div class="project-controls">
+          <label class="filter-label" for="filter-input">Filter projects</label>
+          <input class="filter-input" id="filter-input" type="search" />
+          <p class="project-count" id="project-count">Showing 2 of 2 projects</p>
+        </div>
         <div class="project-list">
           <article class="card">
             <h3 class="card-title">Digital rotating picture frame</h3>
             <p class="card-copy">An all purpose digital rotating picture frame containing all student essentials.</p>
           </article>
-          <article class="card featured"> <!-- Hand edited by FN -->
+          <article class="card featured">
             <h3 class="card-title">CLONE research assistant</h3>
             <p class="card-copy">Research assistant for CLONE, an AI powered refactoring tool.</p>
           </article>
