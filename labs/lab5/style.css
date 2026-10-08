@@ -219,7 +219,7 @@
   margin: 0.75rem 0 0;
 }
 
-.hidden {
+.is-hidden { /*hand edited by FN*/
   display: none;
 }
 
