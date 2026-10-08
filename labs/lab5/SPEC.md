@@ -56,5 +56,6 @@ no code inside a <script> tag.
 - [x] app.js contains no .style assignments — hiding is done with the "hidden" class.
 - [x] The DevTools Console shows no red errors when the page loads.
 
+
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
