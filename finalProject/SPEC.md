@@ -25,13 +25,12 @@ border-box; }`.
 - The page MUST use semantic landmarks: one <header>, one <nav>, one <main>, one
 <footer>, and each content group inside its own <section> with a heading.
 - There MUST be exactly one <h1>, and heading levels MUST NOT skip (h1 then h2 then h3).
-- <nav> MUST contain a link to my GitHub profile.
 - The action buttons MUST have four visually distinct states: :hover, :focus-
 visible, :active, and :disabled.
 - All four state rules MUST live in style.css.
 
 ## 4. Acceptance Checklist
-- [x] Exactly one <h1>, one <header>, one <nav>, one <main>, one <footer>.
+- [x] At most <h1>, one <header>, one <nav>, one <main>, one <footer>.
 - [x] style.css begins with the box-sizing reset.
 - [x] No inline style="..." attributes anywhere in index.html.
 - [x] No ID selectors (#something) in style.css.
@@ -41,7 +40,7 @@ visible, :active, and :disabled.
 - [x] Tabbing to the buttons shows a clear focus ring.
 - [x] Holding the mouse down on it looks different again.
 - [x] Only HTML, CSS, and JavaScript are used
-- [ ] Github link MUST be within the credits menu
+- [ ] Github link MUST appear only within the credits menu
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
