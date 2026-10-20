@@ -25,6 +25,7 @@
 
 .site-header {
   padding: 4rem 1.5rem 3.5rem;
+  margin-bottom: 2rem;
   background: var(--black);
   color: var(--white);
   text-align: center;
