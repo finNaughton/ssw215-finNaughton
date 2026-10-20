@@ -39,7 +39,7 @@ visible, :active, and :disabled.
 - [x] Hovering the buttons visibly changes them.
 - [x] Tabbing to the buttons shows a clear focus ring.
 - [x] Holding the mouse down on it looks different again.
-- [x] Only HTML, CSS, and Java are used
+- [x] Only HTML, CSS, and JavaScript are used
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
