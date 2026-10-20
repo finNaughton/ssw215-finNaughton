@@ -30,16 +30,16 @@ visible, :active, and :disabled.
 - All four state rules MUST live in style.css.
 
 ## 4. Acceptance Checklist
-- [ ] Exactly one <h1>, one <header>, one <nav>, one <main>, one <footer>.
-- [ ] style.css begins with the box-sizing reset.
-- [ ] No inline style="..." attributes anywhere in index.html.
-- [ ] No ID selectors (#something) in style.css.
-- [ ] No horizontal scrollbar when the browser is narrowed to 375px.
-- [ ] Page background color is correct
-- [ ] Hovering the buttons visibly changes them.
-- [ ] Tabbing to the buttons shows a clear focus ring.
-- [ ] Holding the mouse down on it looks different again.
-- [ ] Only HTML, CSS, and Java are used
+- [x] Exactly one <h1>, one <header>, one <nav>, one <main>, one <footer>.
+- [x] style.css begins with the box-sizing reset.
+- [x] No inline style="..." attributes anywhere in index.html.
+- [x] No ID selectors (#something) in style.css.
+- [x] No horizontal scrollbar when the browser is narrowed to 375px.
+- [x] Page background color is correct
+- [x] Hovering the buttons visibly changes them.
+- [x] Tabbing to the buttons shows a clear focus ring.
+- [x] Holding the mouse down on it looks different again.
+- [x] Only HTML, CSS, and Java are used
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
