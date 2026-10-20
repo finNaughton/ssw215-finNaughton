@@ -16,6 +16,7 @@ border-box; }`.
 - Practice Rhythm takes user to a new section where they are displayed a random rhythm that they must click in time with. However, for the time being the opened menu should just display "Rhythms Coming Soon"
 - How to use should give a brief overview of how to use the Practice Rhythms section. The steps should generally follow this guideline: The user will first be presented a random rhythm, they will then be able to view it over before clicking the "practice" button, then the user will hear 4 metronome clicks to get them in time with the rhythm, and finally the user will be able to press any button on their keyboard to be used as an input to click in time with the given rhythm.
 - Credits should give credit to Fintan Naughton and link my GitHub: (https://github.com/finNaughton) MUST open in a new tab
+- Github link must appear under the credits button
 (target="_blank").
 - Credits should also properly credit AI tools used in developing the site
 - The page background MUST be white
@@ -40,6 +41,7 @@ visible, :active, and :disabled.
 - [x] Tabbing to the buttons shows a clear focus ring.
 - [x] Holding the mouse down on it looks different again.
 - [x] Only HTML, CSS, and JavaScript are used
+- [ ] Github link MUST be within the credits menu
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
