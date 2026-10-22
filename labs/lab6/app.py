@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, jsonify, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ projects_db = [
         "description": "Research assistant for CLONE, an AI powered refactoring tool.",
         "likes": 0,
     },
-    { #hand-edited by FN
+    {
         "id": 3,
         "title": "Arduino based digital picture frame",
         "description": "A digital picture frame using an Arduino to draw images",
@@ -32,6 +32,16 @@ def home():
 @app.route("/assets/<path:filename>")
 def assets(filename):
     return send_from_directory("static/assets", filename)
+
+
+@app.post("/api/projects/<int:project_id>/upvote")
+def upvote(project_id):
+    project = next((item for item in projects_db if item["id"] == project_id), None)
+    if project is None:
+        return jsonify({"error": "Project not found"}), 404
+
+    project["likes"] += 1
+    return jsonify({"id": project["id"], "likes": project["likes"]})
 
 
 if __name__ == "__main__":
