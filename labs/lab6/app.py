@@ -5,7 +5,7 @@ app = Flask(__name__)
 projects_db = [
     {
         "id": 1,
-        "title": "Digital rotating picture frame",
+        "title": "Raspberry Pi digital rotating picture frame",
         "description": "An all purpose digital rotating picture frame containing all student essentials.",
         "likes": 0,
     },
@@ -13,6 +13,12 @@ projects_db = [
         "id": 2,
         "title": "CLONE research assistant",
         "description": "Research assistant for CLONE, an AI powered refactoring tool.",
+        "likes": 0,
+    },
+    { #hand-edited by FN
+        "id": 3,
+        "title": "Arduino based digital picture frame",
+        "description": "A digital picture frame using an Arduino to draw images",
         "likes": 0,
     },
 ]
