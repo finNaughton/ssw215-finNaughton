@@ -9,8 +9,8 @@ function updateProjectList() {
   const visibleProjectTitles = [];
 
   projectCards.forEach((card) => {
-    const matches = card.textContent.includes(searchTerm).toLowerCase();
-    card.classList.toggle("is-hidden", !matches); // hand edited by FN
+    const matches = card.textContent.toLowerCase().includes(searchTerm);
+    card.classList.toggle("hidden", !matches);
 
     if (matches) {
       visibleProjects += 1;

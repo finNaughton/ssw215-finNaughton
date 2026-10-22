@@ -16,7 +16,8 @@ this bio: "a 2-sentence bio".
 - Social link: GitHub (https://github.com/finNaughton) MUST open in a new tab
 (target="_blank").
 - The page background MUST be a dark navy blue
-- The header SHOULD be a slightly lighter shade of blue and SHOULD have white text
+- The header MUST be a slightly lighter shade of blue and SHOULD have white text
+- The box containing the information in the header MUST be the only part in a lighter blue; the rest of the background surrounding this box of information MUST remain a dark navy blue
 ## 4. Acceptance Checklist
 - [x] Valid semantic HTML5: the page uses <header>, <main>, and <footer>.
 - [x] The avatar image has width, height, and alt attributes.

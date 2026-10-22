@@ -4,7 +4,7 @@
 
 .page {
   --bg: #071a2f;
-  --header-bg: #0a2745;
+  --header-bg: #071a2f;
   --panel: #123a62;
   --text: #ffffff;
   --muted: #d7e4f5;
@@ -219,7 +219,7 @@
   margin: 0.75rem 0 0;
 }
 
-.is-hidden { /*hand edited by FN*/
+.hidden {
   display: none;
 }
 
