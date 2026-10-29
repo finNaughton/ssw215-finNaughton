@@ -1,27 +1,25 @@
+import json
+from pathlib import Path
+
 from flask import Flask, jsonify, render_template, send_from_directory
 
 app = Flask(__name__)
 
-projects_db = [
-    {
-        "id": 1,
-        "title": "Raspberry Pi digital rotating picture frame",
-        "description": "An all purpose digital rotating picture frame containing all student essentials.",
-        "likes": 0,
-    },
-    {
-        "id": 2,
-        "title": "CLONE research assistant",
-        "description": "Research assistant for CLONE, an AI powered refactoring tool.",
-        "likes": 0,
-    },
-    {
-        "id": 3,
-        "title": "Arduino based digital picture frame",
-        "description": "A digital picture frame using an Arduino to draw images",
-        "likes": 0,
-    },
-]
+PROJECTS_FILE = Path(__file__).resolve().parent / "projects.json"
+
+
+def load_projects():
+    with PROJECTS_FILE.open(encoding="utf-8") as file:
+        return json.load(file)
+
+
+def save_projects(projects):
+    with PROJECTS_FILE.open("w", encoding="utf-8") as file:
+        json.dump(projects, file, indent=2)
+        file.write("\n")
+
+
+projects_db = load_projects()
 
 
 @app.route("/")
@@ -41,6 +39,7 @@ def upvote(project_id):
         return jsonify({"error": "Project not found"}), 404
 
     project["likes"] += 1
+    save_projects(projects_db)
     return jsonify({"id": project["id"], "likes": project["likes"]})
 
 
