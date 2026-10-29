@@ -15,11 +15,18 @@ db = SQLAlchemy(app)
 SEED_FILE = Path(__file__).resolve().parent / "projects_seed.json"
 
 
+class Author(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    projects = db.relationship("Project", backref="author")
+
+
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False, default="")
     likes = db.Column(db.Integer, default=0, nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey("author.id"), nullable=False)
 
     def to_dict(self):
         return {
@@ -27,6 +34,7 @@ class Project(db.Model):
             "title": self.title,
             "description": self.description,
             "likes": self.likes,
+            "author": self.author.name,
         }
 
 
@@ -37,6 +45,10 @@ def init_seed_data():
     with SEED_FILE.open(encoding="utf-8") as file:
         seed_projects = json.load(file)
 
+    author = Author(name="Fintan Naughton")
+    db.session.add(author)
+    db.session.flush()
+
     for project in seed_projects:
         db.session.add(
             Project(
@@ -44,6 +56,7 @@ def init_seed_data():
                 title=project["title"],
                 description=project["description"],
                 likes=project["likes"],
+                author_id=author.id,
             )
         )
     db.session.commit()
@@ -93,7 +106,16 @@ def create_project():
     if not isinstance(title, str) or not title.strip():
         return jsonify({"error": "A non-empty title is required"}), 400
 
-    project = Project(title=title.strip(), description="", likes=0)
+    author = db.session.execute(db.select(Author).order_by(Author.id)).scalars().first()
+    if author is None:
+        return jsonify({"error": "No project author is available"}), 400
+
+    project = Project(
+        title=title.strip(),
+        description="",
+        likes=0,
+        author_id=author.id,
+    )
     db.session.add(project)
     try:
         db.session.commit()
