@@ -43,6 +43,11 @@
           <input class="filter-input" id="filter-input" type="search" />
           <p class="project-count" id="project-count">Showing {{ projects|length }} of {{ projects|length }} projects</p>
         </div>
+        <div class="project-create">
+          <label for="new-title">New project title</label>
+          <input id="new-title" type="text" />
+          <button id="add-project" type="button">Add project</button>
+        </div>
         <div class="project-list">
           {% for project in projects %}
           <article class="card" data-project-id="{{ project.id }}">

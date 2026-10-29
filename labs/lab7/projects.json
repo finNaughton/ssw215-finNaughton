@@ -16,5 +16,11 @@
     "title": "Arduino based digital picture frame",
     "description": "A digital picture frame using an Arduino to draw images",
     "likes": 0
+  },
+  {
+    "id": 4,
+    "title": "Automatic plant watering system",
+    "description": "",
+    "likes": 0
   }
 ]
