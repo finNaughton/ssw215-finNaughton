@@ -122,24 +122,24 @@ from each project's to_dict() method.
 - Adding a project and upvoting a project MUST both work exactly as they did in Lab 7,
 writing to the database instead of to a file.
 - A project created with the Add project form MUST be attached to the same seeded author.
-- The author MUST be displayed on the page for each project
-- The author MUST be visible for each project in api/projects
+- The author MUST be displayed on the page for each project <!-- Hand edited by FN-->
+- The author MUST be visible for each project in api/projects <!-- Hand edited by FN-->
 
 ## 4. Acceptance Checklist
-- [ ] Starting the server creates instance/portfolio.db, and the page shows the projects
+- [x] Starting the server creates instance/portfolio.db, and the page shows the projects
 that were in projects_seed.json.
-- [ ] Restarting the server does not duplicate any project.
-- [ ] Opening http://127.0.0.1:5000/api/projects in the browser shows the projects as
+- [x] Restarting the server does not duplicate any project.
+- [x] Opening http://127.0.0.1:5000/api/projects in the browser shows the projects as
 JSON.
-- [ ] Upvoting changes the count, and the new count is still there after a restart.
-- [ ] Adding a project whose title already exists does not create a second copy, and the
+- [x] Upvoting changes the count, and the new count is still there after a restart.
+- [x] Adding a project whose title already exists does not create a second copy, and the
 server does not crash.
-- [ ] instance/ and *.db are ignored by Git and do not appear in git status.
-- [ ] instance/portfolio.db contains two tables.
-- [ ] Deleting instance/portfolio.db and restarting rebuilds both tables with the seed
+- [x] instance/ and *.db are ignored by Git and do not appear in git status.
+- [x] instance/portfolio.db contains two tables.
+- [x] Deleting instance/portfolio.db and restarting rebuilds both tables with the seed
 data.
-- [ ] Author's name appears with each project on the page
-- [ ] Author's name appears with each project in api/projects
+- [x] Author's name appears with each project on the page <!-- Hand edited by FN-->
+- [x] Author's name appears with each project in api/projects <!-- Hand edited by FN-->
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
