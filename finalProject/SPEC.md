@@ -39,16 +39,16 @@ block that runs it with debug=True when the file is executed directly.
 - The action buttons MUST have four visually distinct states: :hover, :focus-
 visible, :active, and :disabled.
 - All four state rules MUST live in style.css.
-- Each project in projects_db MUST have the keys: id (an integer), ref (a string with the file path to the rhythm image stored in frontend/static/assets/rhythms), and difficulty (easy, medium, hard)
-- Each rendered card MUST carry the attribute data-project-id holding that project's id.
+- Each rhythm in rhythms_db MUST have the keys: id (an integer), ref (a string with the file path to the rhythm image stored in frontend/static/assets/rhythms), and difficulty (easy, medium, hard)
+- Each rendered card MUST carry the attribute data-rhythm-id holding that rhythm's id.
 - Visiting http://127.0.0.1:5000/ MUST serve the page, with one card per entry in
-projects_db.
+rhythms_db.
 
 ## 4. Acceptance Checklist
 - [ ] Running app.py starts a server, and the page loads at http://127.0.0.1:5000/.
 - [ ] Every card on the page comes from the {% for %} loop — index.html contains no
 hardcoded card.
-- [ ] Each card carries data-project-id with that project's id.
+- [ ] Each card carries data-rhythm-id with that rhythm's id.
 - [ ] Changing a title in app.py and reloading the page changes what I see.
 - [ ] The filter box still hides and shows cards, and I did not edit app.js to make that
 work.
