@@ -20,6 +20,14 @@ plain relative path.
 never processed by Flask.
 - app.py MUST create the application with app = Flask(__name__), and MUST end with a
 block that runs it with debug=True when the file is executed directly.
+- rhythms.json MUST be the only source of rhythm data. app.py MUST NOT contain a
+hardcoded list of rhythms.
+- The path to rhythms.json MUST be built from the location of app.py, not from a bare
+relative path.
+- Every route that changes a rhythm MUST write the whole list back to rhythms.json
+before it returns a response.
+- rhythms.json MUST be written with json.dump(..., indent=2) so it stays readable in a
+diff.
 
 ## 3. UI Content & Interface Contract
 - Hero header: The website title (RYTM)
@@ -43,22 +51,17 @@ visible, :active, and :disabled.
 - Each rendered card MUST carry the attribute data-rhythm-id holding that rhythm's id.
 - Visiting http://127.0.0.1:5000/ MUST serve the page, with one card per entry in
 rhythms_db.
+- app.py MUST read rhythms.json and pass the resulting list to the template, so the page
+shows whatever the file currently contains.
 
 ## 4. Acceptance Checklist
-- [x] Running app.py starts a server, and the page loads at http://127.0.0.1:5000/.
-- [x] Every card on the page comes from the {% for %} loop — index.html contains no
-hardcoded card.
-- [x] Each card carries data-rhythm-id with that rhythm's id.
-- [x] Changing a title in app.py and reloading the page changes what I see.
-- [x] The filter box still hides and shows cards, and I did not edit app.js to make that
-work.
-- [x] The page is styled — style.css and app.js both loaded.
-- [x] The DevTools Console shows no red errors.
-- [x] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
-- [x] no use of 'projects', only 'rhythm' in all locations
-- [x] credits section includes that rhythms are provided by Josephine Gonzalez at https://paulfox.blog/wp-content/uploads/2020/07/rhythm-book-for-warmups.pdf
-- [x] action buttons are centered on page
-- [ ] rendered rhythmms appear under practice rhythm section
+- [ ] The page still loads at http://127.0.0.1:5000/ and shows every rhythm in
+rhythms.json.
+- [ ] app.py contains no hardcoded rhythm list.
+- [ ] Stopping the server with Ctrl+C, restarting it, and reloading the page keeps any changes to the rhythms.
+- [ ] Editing a title directly in rhythms.json and reloading the page changes what I
+see.
+- [ ] The DevTools Console shows no red errors.
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
