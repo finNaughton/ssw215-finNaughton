@@ -2,6 +2,7 @@
 ## 1. Purpose & Scope
 - A website designed to help people practice sight reading music rhythm.
 - Non-Goals: no multi-page routing; no backend; no contact forms.
+
 ## 2. Invariants & Negative Constraints
 - All styling MUST reside in `./style.css` (no inline style="..." attributes).
 - The page MUST NOT load external CSS frameworks or CDNs (no Bootstrap, no Tailwind).
@@ -10,6 +11,16 @@
 border-box; }`.
 - Spacing and font sizes MUST use rem. px MAY be used only for borders.
 - Styling MUST use class selectors. ID selectors MUST NOT be used for styling.
+- All rhythm data MUST live in a Python list of dictionaries named rhythms_db in
+app.py. templates/index.html MUST NOT contain any hardcoded rhythms.
+- templates/index.html MUST render one card per rhythm with a {% for %} loop.
+- style.css and app.js MUST be linked with url_for('static', filename=...), never with a
+plain relative path.
+- No Jinja syntax ({{ }} or {% %}) may appear in static/app.js. External script files are
+never processed by Flask.
+- app.py MUST create the application with app = Flask(__name__), and MUST end with a
+block that runs it with debug=True when the file is executed directly.
+
 ## 3. UI Content & Interface Contract
 - Hero header: The website title (RYTM)
 - Action Buttons: A set of 3 buttons which all open respective UI menus: Practice Rhythm, How to Use, and Credits
@@ -28,19 +39,22 @@ border-box; }`.
 - The action buttons MUST have four visually distinct states: :hover, :focus-
 visible, :active, and :disabled.
 - All four state rules MUST live in style.css.
+- Each project in projects_db MUST have the keys: id (an integer), ref (a string with the file path to the rhythm image stored in frontend/static/assets/rhythms), and difficulty (easy, medium, hard)
+- Each rendered card MUST carry the attribute data-project-id holding that project's id.
+- Visiting http://127.0.0.1:5000/ MUST serve the page, with one card per entry in
+projects_db.
 
 ## 4. Acceptance Checklist
-- [x] At most <h1>, one <header>, one <nav>, one <main>, one <footer>.
-- [x] style.css begins with the box-sizing reset.
-- [x] No inline style="..." attributes anywhere in index.html.
-- [x] No ID selectors (#something) in style.css.
-- [x] No horizontal scrollbar when the browser is narrowed to 375px.
-- [x] Page background color is correct
-- [x] Hovering the buttons visibly changes them.
-- [x] Tabbing to the buttons shows a clear focus ring.
-- [x] Holding the mouse down on it looks different again.
-- [x] Only HTML, CSS, and JavaScript are used
-- [ ] Github link MUST appear only within the credits menu
+- [ ] Running app.py starts a server, and the page loads at http://127.0.0.1:5000/.
+- [ ] Every card on the page comes from the {% for %} loop — index.html contains no
+hardcoded card.
+- [ ] Each card carries data-project-id with that project's id.
+- [ ] Changing a title in app.py and reloading the page changes what I see.
+- [ ] The filter box still hides and shows cards, and I did not edit app.js to make that
+work.
+- [ ] The page is styled — style.css and app.js both loaded.
+- [ ] The DevTools Console shows no red errors.
+- [ ] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
