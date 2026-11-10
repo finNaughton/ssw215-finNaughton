@@ -106,13 +106,6 @@ h2 {
   padding: 1.25rem 1.5rem 0;
 }
 
-.rhythm-library-section {
-  max-width: 60rem;
-  margin: 2rem auto 0;
-  padding: 2.5rem;
-  border: 1px solid var(--border-gray);
-}
-
 .filter-label {
   display: block;
   margin-top: 1.5rem;
@@ -224,6 +217,17 @@ h2 {
   margin-top: 2rem;
 }
 
+.rhythm-library {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-gray);
+}
+
+.rhythm-library > h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
 .is-hidden {
   display: none;
 }
@@ -282,8 +286,7 @@ h2 {
   }
 
   .welcome-section,
-  .content-section,
-  .rhythm-library-section {
+  .content-section {
     padding: 2rem 1.25rem;
   }
 

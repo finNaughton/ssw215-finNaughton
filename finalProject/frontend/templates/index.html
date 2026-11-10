@@ -42,31 +42,29 @@
         </p>
       </section>
 
-      <section class="rhythm-library-section" aria-labelledby="rhythm-library-heading">
-        <p class="section-kicker">Rhythm library</p>
-        <h2 id="rhythm-library-heading">Choose a rhythm</h2>
-        <label class="filter-label" for="rhythm-filter">Filter rhythms</label>
-        <input class="filter-input" id="rhythm-filter" type="search" placeholder="Search by title or difficulty" />
-        <div class="rhythm-grid">
-          {% for rhythm in rhythms %}
-          <article class="rhythm-card" data-rhythm-id="{{ rhythm.id }}">
-            <h3>{{ rhythm.title }}</h3>
-            <img
-              src="{{ url_for('static', filename=rhythm.ref) }}"
-              alt="{{ rhythm.title }}"
-              class="rhythm-image"
-            />
-            <p class="difficulty">Difficulty: {{ rhythm.difficulty }}</p>
-          </article>
-          {% endfor %}
-        </div>
-      </section>
-
       <section class="content-section is-hidden" id="practice-section" aria-labelledby="practice-heading" hidden>
         <p class="section-kicker">Practice mode</p>
         <h2 id="practice-heading">Practice Rhythm</h2>
         <p class="coming-soon">Rhythms Coming Soon</p>
         <p>Check back soon to practice reading and playing rhythms in time.</p>
+        <div class="rhythm-library">
+          <h3>Choose a rhythm</h3>
+          <label class="filter-label" for="rhythm-filter">Filter rhythms</label>
+          <input class="filter-input" id="rhythm-filter" type="search" placeholder="Search by title or difficulty" />
+          <div class="rhythm-grid">
+            {% for rhythm in rhythms %}
+            <article class="rhythm-card" data-rhythm-id="{{ rhythm.id }}">
+              <h3>{{ rhythm.title }}</h3>
+              <img
+                src="{{ url_for('static', filename=rhythm.ref) }}"
+                alt="{{ rhythm.title }}"
+                class="rhythm-image"
+              />
+              <p class="difficulty">Difficulty: {{ rhythm.difficulty }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
       </section>
 
       <section class="content-section is-hidden" id="how-to-section" aria-labelledby="how-to-heading" hidden>

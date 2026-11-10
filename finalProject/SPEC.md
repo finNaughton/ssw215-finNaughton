@@ -57,7 +57,8 @@ work.
 - [x] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
 - [x] no use of 'projects', only 'rhythm' in all locations
 - [x] credits section includes that rhythms are provided by Josephine Gonzalez at https://paulfox.blog/wp-content/uploads/2020/07/rhythm-book-for-warmups.pdf
-- [ ] action buttons are centered on page
+- [x] action buttons are centered on page
+- [ ] rendered rhythmms appear under practice rhythm section
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
