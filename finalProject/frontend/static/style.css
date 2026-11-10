@@ -102,6 +102,62 @@ h2 {
   padding: 1rem 1.5rem 4rem;
 }
 
+.site-nav {
+  padding: 1.25rem 1.5rem 0;
+}
+
+.rhythm-library-section {
+  max-width: 60rem;
+  margin: 2rem auto 0;
+  padding: 2.5rem;
+  border: 1px solid var(--border-gray);
+}
+
+.filter-label {
+  display: block;
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+.filter-input {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-gray);
+  font: inherit;
+}
+
+.rhythm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.rhythm-card {
+  padding: 1rem;
+  border: 1px solid var(--border-gray);
+  text-align: center;
+}
+
+.rhythm-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.rhythm-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.difficulty {
+  margin: 1rem 0 0;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
 .welcome-section,
 .content-section {
   max-width: 44rem;
@@ -220,8 +276,14 @@ h2 {
     padding-left: 1rem;
   }
 
+  .site-nav {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
   .welcome-section,
-  .content-section {
+  .content-section,
+  .rhythm-library-section {
     padding: 2rem 1.25rem;
   }
 
@@ -231,5 +293,9 @@ h2 {
 
   .action-button {
     width: 100%;
+  }
+
+  .rhythm-grid {
+    grid-template-columns: 1fr;
   }
 }

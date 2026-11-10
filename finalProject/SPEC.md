@@ -55,6 +55,8 @@ work.
 - [ ] The page is styled — style.css and app.js both loaded.
 - [ ] The DevTools Console shows no red errors.
 - [ ] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
+- [ ] no use of 'projects', only 'rhythm' in all locations
+- [ ] credits section includes that rhythms are provided by Josephine Gonzalez at https://paulfox.blog/wp-content/uploads/2020/07/rhythm-book-for-warmups.pdf
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
