@@ -45,18 +45,19 @@ visible, :active, and :disabled.
 rhythms_db.
 
 ## 4. Acceptance Checklist
-- [ ] Running app.py starts a server, and the page loads at http://127.0.0.1:5000/.
-- [ ] Every card on the page comes from the {% for %} loop — index.html contains no
+- [x] Running app.py starts a server, and the page loads at http://127.0.0.1:5000/.
+- [x] Every card on the page comes from the {% for %} loop — index.html contains no
 hardcoded card.
-- [ ] Each card carries data-rhythm-id with that rhythm's id.
-- [ ] Changing a title in app.py and reloading the page changes what I see.
-- [ ] The filter box still hides and shows cards, and I did not edit app.js to make that
+- [x] Each card carries data-rhythm-id with that rhythm's id.
+- [x] Changing a title in app.py and reloading the page changes what I see.
+- [x] The filter box still hides and shows cards, and I did not edit app.js to make that
 work.
-- [ ] The page is styled — style.css and app.js both loaded.
-- [ ] The DevTools Console shows no red errors.
-- [ ] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
-- [ ] no use of 'projects', only 'rhythm' in all locations
-- [ ] credits section includes that rhythms are provided by Josephine Gonzalez at https://paulfox.blog/wp-content/uploads/2020/07/rhythm-book-for-warmups.pdf
+- [x] The page is styled — style.css and app.js both loaded.
+- [x] The DevTools Console shows no red errors.
+- [x] rytm1-35 are labelled 'easy', and 36-42 are labelled 'medium'
+- [x] no use of 'projects', only 'rhythm' in all locations
+- [x] credits section includes that rhythms are provided by Josephine Gonzalez at https://paulfox.blog/wp-content/uploads/2020/07/rhythm-book-for-warmups.pdf
+- [ ] action buttons are centered on page
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.

@@ -80,7 +80,7 @@ h2 {
 
 .site-nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 1.25rem 1.5rem;
 }
 
