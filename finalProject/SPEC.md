@@ -53,15 +53,21 @@ visible, :active, and :disabled.
 rhythms_db.
 - app.py MUST read rhythms.json and pass the resulting list to the template, so the page
 shows whatever the file currently contains.
+- objects in the "Choose a rhythm" section of a page MUST be able to be clicked on to open it in the practice UI.
+- The practice UI opens a window on the current page and MUST NOT open a new page
+- The practice UI contains an image of the rhythm with an action button underneath saying "Practice"
+- items in rhythms.json MUST include a field for "beats", which is a list that stores the time in seconds between each set of beats at a bpm of 120.
+- Pressing the "Practice" button plays 4 metronome clicks at 120bpm and then starts the practice, where the user must input using any button on their keyboard in time with the metronome clicks, based on the "beats" fields in rhythms.json. There should be a tolorance of about + or - .1 seconds.
+- After each note, above the image of the rhythm MAY display either early, on time, late, or missed 
+- There is a small "X" button in the top right corner of the practice section to close it
+- Metronome clicks MUST continue throughout the round of practice, and MUST end once the final note occurs or the practice section is clicked out of
 
 ## 4. Acceptance Checklist
-- [ ] The page still loads at http://127.0.0.1:5000/ and shows every rhythm in
-rhythms.json.
-- [ ] app.py contains no hardcoded rhythm list.
-- [ ] Stopping the server with Ctrl+C, restarting it, and reloading the page keeps any changes to the rhythms.
-- [ ] Editing a title directly in rhythms.json and reloading the page changes what I
-see.
-- [ ] The DevTools Console shows no red errors.
+- [ ] i can click on the practice rhythms to practice that specific rhythm
+- [ ] selecting the practice button below a rhythm in the practice ui begins practice mode
+- [ ] practice mode starts by providing 4 metronome clicks at 120 bpm and then allows the user to input to click in time with the rhythm, also at 120 bpm
+- [ ] items in rhythms.json have a "beats" field
+- [ ] there is a tolerance of + or - .1 seconds on each input for "on-time"
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
