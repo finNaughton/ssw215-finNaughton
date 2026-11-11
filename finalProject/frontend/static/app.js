@@ -11,7 +11,7 @@ const startPracticeButton = document.querySelector("#start-practice");
 
 const BEAT_INTERVAL = 0.5;
 const COUNT_IN_BEATS = 4;
-const TIMING_TOLERANCE_MS = 200;
+const TIMING_TOLERANCE_MS = 150;
 const LATE_WINDOW_MS = 250;
 
 let selectedRhythm = null;
