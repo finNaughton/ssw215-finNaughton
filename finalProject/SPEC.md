@@ -7,27 +7,23 @@
 - All styling MUST reside in `./style.css` (no inline style="..." attributes).
 - The page MUST NOT load external CSS frameworks or CDNs (no Bootstrap, no Tailwind).
 - The layout MUST collapse into a single vertical column on screens narrower than 768px.
-- style.css MUST begin with the universal reset: `*, *::before, *::after { box-sizing:
-border-box; }`.
+- style.css MUST begin with the universal reset: `*, *::before, *::after { box-sizing: border-box; }`.
 - Spacing and font sizes MUST use rem. px MAY be used only for borders.
 - Styling MUST use class selectors. ID selectors MUST NOT be used for styling.
-- All rhythm data MUST live in a Python list of dictionaries named rhythms_db in
-app.py. templates/index.html MUST NOT contain any hardcoded rhythms.
+- All rhythm data MUST live in a Python list of dictionaries named rhythms_db in app.py. templates/index.html MUST NOT contain any hardcoded rhythms.
 - templates/index.html MUST render one card per rhythm with a {% for %} loop.
-- style.css and app.js MUST be linked with url_for('static', filename=...), never with a
-plain relative path.
-- No Jinja syntax ({{ }} or {% %}) may appear in static/app.js. External script files are
-never processed by Flask.
-- app.py MUST create the application with app = Flask(__name__), and MUST end with a
-block that runs it with debug=True when the file is executed directly.
-- rhythms.json MUST be the only source of rhythm data. app.py MUST NOT contain a
-hardcoded list of rhythms.
-- The path to rhythms.json MUST be built from the location of app.py, not from a bare
-relative path.
-- Every route that changes a rhythm MUST write the whole list back to rhythms.json
-before it returns a response.
-- rhythms.json MUST be written with json.dump(..., indent=2) so it stays readable in a
-diff.
+- style.css and app.js MUST be linked with url_for('static', filename=...), never with a plain relative path.
+- No Jinja syntax ({{ }} or {% %}) may appear in static/app.js. External script files are never processed by Flask.
+- app.py MUST create the application with app = Flask(__name__), and MUST end with a block that runs it with debug=True when the file is executed directly.
+- rhythms.json MUST be the only source of rhythm data. app.py MUST NOT contain a hardcoded list of rhythms.
+- The path to rhythms.json MUST be built from the location of app.py, not from a bare relative path.
+- Every route that changes a rhythm MUST write the whole list back to rhythms.json before it returns a response.
+- rhythms.json MUST be written with json.dump(..., indent=2) so it stays readable in a diff.
+- All rhythm data MUST live in a SQLite database managed by Flask-SQLAlchemy. app.py MUST NOT read or write rhythms_seed.json at runtime, except when seeding an empty database.
+- The Rhythm model MUST declare id as the primary key, title, ref, and difficuly as db.String(120) with nullable=False and unique=True, and beats as db.Column of db.Integer with default=[0.5]
+- The database MUST be created by db.create_all() inside an app.app_context() block when the server starts.
+- init_seed_data() MUST insert the rhythms from rhythms_seed.json only when the rhythms table is empty, so restarting the server never duplicates rows.
+- Any commit the database refuses MUST be followed by db.session.rollback(), and the route MUST return 400 with a JSON error rather than crashing.
 
 ## 3. UI Content & Interface Contract
 - Hero header: The website title (RYTM)
@@ -61,17 +57,15 @@ shows whatever the file currently contains.
 - After each note, above the image of the rhythm MAY display either early, on time, late, or missed 
 - There is a small "X" button in the top right corner of the practice section to close it
 - Metronome clicks MUST continue throughout the round of practice, and MUST end once the final note occurs or the practice section is clicked out of
+- The page MUST still be rendered by Jinja from templates/index.html, with the rhythm list coming from a database query.
+- GET /api/rhythm MUST return every rhythm as a JSON array with status code 200, built
+from each rhythm's to_dict() method.
 
 ## 4. Acceptance Checklist
-- [x] i can click on the practice rhythms to practice that specific rhythm
-- [x] selecting the practice button below a rhythm in the practice ui begins practice mode
-- [x] rhythm stays displayed during the practice mode
-- [x] practice mode starts by providing 4 metronome clicks at 120 bpm
-- [x] then allows the user to input to click in time with the rhythm, also at 120 bpm
-- [x] metronome continues playing until all beats are done
-- [x] items in rhythms.json have a "beats" field
-- [x] there is a tolerance on each input for "on-time"
-- [x] metronome audio MUST click exactly every .5 seconds during practice, even when beats are longer than .5 seconds.
+- [ ] Starting the server creates instance/portfolio.db, and the page shows the rhythms that were in rhythms_seed.json.
+- [ ] Restarting the server does not duplicate any rhythm.
+- [ ] Opening http://127.0.0.1:5000/api/rhythms in the browser shows the rhythms as JSON.
+- [ ] instance/ and *.db are ignored by Git and do not appear in git status.
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
