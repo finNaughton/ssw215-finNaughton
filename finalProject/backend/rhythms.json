@@ -3,252 +3,527 @@
     "id": 1,
     "title": "Rhythm 1",
     "ref": "assets/rhythms/rytm1.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      1.0,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      1.0,
+      0.5,
+      0.5,
+      0.5,
+      1.5,
+      0.5,
+      1.0,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 2,
     "title": "Rhythm 2",
     "ref": "assets/rhythms/rytm2.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      2.0,
+      1.5,
+      0.5,
+      0.5,
+      2.0,
+      0.5
+    ]
   },
   {
     "id": 3,
     "title": "Rhythm 3",
     "ref": "assets/rhythms/rytm3.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 4,
     "title": "Rhythm 4",
     "ref": "assets/rhythms/rytm4.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 5,
     "title": "Rhythm 5",
     "ref": "assets/rhythms/rytm5.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 6,
     "title": "Rhythm 6",
     "ref": "assets/rhythms/rytm6.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 7,
     "title": "Rhythm 7",
     "ref": "assets/rhythms/rytm7.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 8,
     "title": "Rhythm 8",
     "ref": "assets/rhythms/rytm8.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 9,
     "title": "Rhythm 9",
     "ref": "assets/rhythms/rytm9.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 10,
     "title": "Rhythm 10",
     "ref": "assets/rhythms/rytm10.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 11,
     "title": "Rhythm 11",
     "ref": "assets/rhythms/rytm11.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 12,
     "title": "Rhythm 12",
     "ref": "assets/rhythms/rytm12.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 13,
     "title": "Rhythm 13",
     "ref": "assets/rhythms/rytm13.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 14,
     "title": "Rhythm 14",
     "ref": "assets/rhythms/rytm14.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 15,
     "title": "Rhythm 15",
     "ref": "assets/rhythms/rytm15.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 16,
     "title": "Rhythm 16",
     "ref": "assets/rhythms/rytm16.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 17,
     "title": "Rhythm 17",
     "ref": "assets/rhythms/rytm17.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 18,
     "title": "Rhythm 18",
     "ref": "assets/rhythms/rytm18.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 19,
     "title": "Rhythm 19",
     "ref": "assets/rhythms/rytm19.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 20,
     "title": "Rhythm 20",
     "ref": "assets/rhythms/rytm20.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 21,
     "title": "Rhythm 21",
     "ref": "assets/rhythms/rytm21.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 22,
     "title": "Rhythm 22",
     "ref": "assets/rhythms/rytm22.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 23,
     "title": "Rhythm 23",
     "ref": "assets/rhythms/rytm23.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 24,
     "title": "Rhythm 24",
     "ref": "assets/rhythms/rytm24.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 25,
     "title": "Rhythm 25",
     "ref": "assets/rhythms/rytm25.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 26,
     "title": "Rhythm 26",
     "ref": "assets/rhythms/rytm26.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 27,
     "title": "Rhythm 27",
     "ref": "assets/rhythms/rytm27.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 28,
     "title": "Rhythm 28",
     "ref": "assets/rhythms/rytm28.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 29,
     "title": "Rhythm 29",
     "ref": "assets/rhythms/rytm29.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 30,
     "title": "Rhythm 30",
     "ref": "assets/rhythms/rytm30.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 31,
     "title": "Rhythm 31",
     "ref": "assets/rhythms/rytm31.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 32,
     "title": "Rhythm 32",
     "ref": "assets/rhythms/rytm32.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 33,
     "title": "Rhythm 33",
     "ref": "assets/rhythms/rytm33.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 34,
     "title": "Rhythm 34",
     "ref": "assets/rhythms/rytm34.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 35,
     "title": "Rhythm 35",
     "ref": "assets/rhythms/rytm35.png",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 36,
     "title": "Rhythm 36",
     "ref": "assets/rhythms/rytm36.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 37,
     "title": "Rhythm 37",
     "ref": "assets/rhythms/rytm37.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 38,
     "title": "Rhythm 38",
     "ref": "assets/rhythms/rytm38.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      1.0,
+      0.5,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 39,
     "title": "Rhythm 39",
     "ref": "assets/rhythms/rytm39.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.25,
+      0.25,
+      0.5,
+      1.0
+    ]
   },
   {
     "id": 40,
     "title": "Rhythm 40",
     "ref": "assets/rhythms/rytm40.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.75,
+      0.25,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 41,
     "title": "Rhythm 41",
     "ref": "assets/rhythms/rytm41.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
   },
   {
     "id": 42,
     "title": "Rhythm 42",
     "ref": "assets/rhythms/rytm42.png",
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "beats": [
+      0.5,
+      1.0,
+      0.5,
+      0.5
+    ]
   }
 ]

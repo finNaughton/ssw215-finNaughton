@@ -131,6 +131,12 @@ h2 {
   padding: 1rem;
   border: 1px solid var(--border-gray);
   text-align: center;
+  cursor: pointer;
+}
+
+.rhythm-card:focus-visible {
+  outline: 0.2rem solid var(--black);
+  outline-offset: 0.25rem;
 }
 
 .rhythm-card h3 {
@@ -217,6 +223,58 @@ h2 {
   margin-top: 2rem;
 }
 
+.practice-panel {
+  position: relative;
+  max-width: 44rem;
+  margin: 2rem auto 0;
+  padding: 2.5rem;
+  border: 1px solid var(--black);
+  text-align: center;
+}
+
+.practice-panel h2 {
+  margin-right: 2rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--black);
+  background: var(--white);
+  color: var(--black);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus-visible {
+  background: var(--black);
+  color: var(--white);
+}
+
+.practice-status,
+.practice-feedback {
+  min-height: 1.6rem;
+  margin: 1rem 0 0;
+}
+
+.practice-feedback {
+  font-weight: 700;
+}
+
+.practice-image {
+  display: block;
+  width: 100%;
+  margin: 1.5rem auto;
+}
+
+.practice-button {
+  margin-top: 0;
+}
+
 .rhythm-library {
   margin-top: 2rem;
   padding-top: 2rem;
@@ -286,7 +344,8 @@ h2 {
   }
 
   .welcome-section,
-  .content-section {
+  .content-section,
+  .practice-panel {
     padding: 2rem 1.25rem;
   }
 

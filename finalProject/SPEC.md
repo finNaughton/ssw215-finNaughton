@@ -63,11 +63,15 @@ shows whatever the file currently contains.
 - Metronome clicks MUST continue throughout the round of practice, and MUST end once the final note occurs or the practice section is clicked out of
 
 ## 4. Acceptance Checklist
-- [ ] i can click on the practice rhythms to practice that specific rhythm
-- [ ] selecting the practice button below a rhythm in the practice ui begins practice mode
-- [ ] practice mode starts by providing 4 metronome clicks at 120 bpm and then allows the user to input to click in time with the rhythm, also at 120 bpm
-- [ ] items in rhythms.json have a "beats" field
-- [ ] there is a tolerance of + or - .1 seconds on each input for "on-time"
+- [x] i can click on the practice rhythms to practice that specific rhythm
+- [x] selecting the practice button below a rhythm in the practice ui begins practice mode
+- [x] rhythm stays displayed during the practice mode
+- [x] practice mode starts by providing 4 metronome clicks at 120 bpm
+- [x] then allows the user to input to click in time with the rhythm, also at 120 bpm
+- [x] metronome continues playing until all beats are done
+- [x] items in rhythms.json have a "beats" field
+- [x] there is a tolerance on each input for "on-time"
+- [x] metronome audio MUST click exactly every .5 seconds during practice, even when beats are longer than .5 seconds.
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
