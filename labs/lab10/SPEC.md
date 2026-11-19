@@ -3,6 +3,7 @@
 - A personal portfolio welcome page for Fintan Naughton, a first-year software
 engineering student.
 - Non-Goals: no multi-page routing; no backend; no contact forms.
+
 ## 2. Invariants & Negative Constraints
 - All styling MUST reside in `./style.css` (no inline style="..." attributes).
 - The page MUST NOT load external CSS frameworks or CDNs (no Bootstrap, no Tailwind).
@@ -72,6 +73,20 @@ reused — not created inside a route or on every request.
 enforces the shape of the answer. The code MUST NOT inspect the model's reply with
 split(), a regular expression, or json.loads().
 - The request MUST use temperature 0.1 or lower.
+- GITHUB_TOKEN MUST be read from the environment with os.getenv. Like the API key, it
+MUST NOT appear in any file that Git tracks.
+- All GitHub network access MUST live in a new file, github_service.py, beside app.py.
+That file MUST NOT import openai.
+- All contact with the AI provider MUST stay in ai_service.py. That file MUST NOT import
+requests, and MUST NOT know where the text it is given came from.
+- app.py MUST NOT import openai and MUST NOT import requests.
+- The README text MUST be cut to at most 4000 characters before it is sent to the
+provider.
+- A draft MUST NOT be written to the database until the user approves it. The approve
+route MUST be the only route that writes to the database, and it MUST NOT call the
+provider.
+- The in-progress draft and the full message history MUST be held in a module-level
+dictionary in ai_service.py, keyed by a session id generated with uuid.uuid4().
 
 ## 3. UI Content & Interface Contract
 - Hero header: my full name "Fintan Naughton", the subtitle "First year software engineering student interested in the intersection between software and music.", and
@@ -146,18 +161,35 @@ request is sent to the provider.
 - A successful smart create MUST return the new project as JSON with status code 201.
 - If the model refuses the request, the route MUST return 422. If the provider cannot be
 reached, the route MUST return 503.
+- The page MUST have an "Import from GitHub" form with an input id="repo-owner", an input
+id="repo-name", and a button labelled "Fetch draft".
+- POST /api/projects/git-start MUST accept a JSON body with "owner" and "repo" keys, and
+MUST return {"session_id": ..., "draft": ...} with status code 201.
+- The draft MUST have four fields: title, a short string; summary, one or two sentences;
+technologies, a list of strings; and difficulty, which MUST be exactly one of "Beginner",
+"Intermediate" or "Advanced".
+- The draft MUST be shown on the page with a feedback box, a "Send feedback" button and
+an "Approve and save" button.
+- POST /api/projects/git-refine MUST accept "session_id" and "feedback", MUST return the
+updated draft with status code 200, and MUST NOT write to the database.
+- POST /api/projects/git-commit MUST accept "session_id", MUST save the approved draft to
+the projects table, and MUST return the saved project as JSON with status code 201.
+- A session_id that is not in the dictionary MUST be answered with status code 404.
+- A repository GitHub does not return MUST be answered with 404, and a README shorter
+than 20 characters with 400. Neither case MUST reach the provider.
+- A project MUST appear in the list on the page, and in /api/projects, only after it has
+been approved.
 
 ## 4. Acceptance Checklist
-- [x] Starting the server creates instance/portfolio.db, and the page shows the projects
-that were in projects_seed.json.
-- [x] .env is ignored by Git and never appears in git status.
-- [x] Pasting a paragraph of notes and pressing Smart create adds a project with a title,
-a summary and a technologies list.
-- [x] /api/projects shows the new project with all three fields filled in.
-- [x] Notes shorter than 20 characters come back as 400, and nothing is sent to the
+- [ ] .env holds two secrets and still never appears in git status.
+- [ ] Typing an owner and a repo and pressing Fetch draft shows a draft with all four
+fields.
+- [ ] Sending feedback changes the draft on the page and leaves /api/projects unchanged.
+- [ ] Approve and save adds the project to /api/projects.
+- [ ] A repository name that does not exist comes back as 404 and nothing is sent to the
 provider.
-- [x] Deleting instance/portfolio.db and restarting rebuilds the table with the new
-columns
+- [ ] Deleting instance/portfolio.db and restarting rebuilds the table with the
+difficulty column.
 
 ## 5. Audit Protocol
 - Inspect the generated code line by line with `git diff --staged` before committing.
