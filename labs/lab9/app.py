@@ -5,6 +5,12 @@ from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 
+from ai_service import (
+    ModelRefusalError,
+    ProviderUnavailableError,
+    extract_project,
+)
+
 app = Flask(__name__)
 database_path = Path(app.instance_path) / "portfolio.db"
 database_path.parent.mkdir(parents=True, exist_ok=True)
@@ -25,6 +31,8 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False, default="")
+    summary = db.Column(db.Text, nullable=False, default="")
+    technologies = db.Column(db.Text, nullable=False, default="")
     likes = db.Column(db.Integer, default=0, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey("author.id"), nullable=False)
 
@@ -33,6 +41,8 @@ class Project(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
+            "summary": self.summary,
+            "technologies": self.technologies,
             "likes": self.likes,
             "author": self.author.name,
         }
@@ -55,6 +65,8 @@ def init_seed_data():
                 id=project["id"],
                 title=project["title"],
                 description=project["description"],
+                summary=project.get("summary", ""),
+                technologies=project.get("technologies", ""),
                 likes=project["likes"],
                 author_id=author.id,
             )
@@ -113,6 +125,46 @@ def create_project():
     project = Project(
         title=title.strip(),
         description="",
+        likes=0,
+        author_id=author.id,
+    )
+    db.session.add(project)
+    try:
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({"error": "A project with that title already exists"}), 400
+    return jsonify(project.to_dict()), 201
+
+
+@app.post("/api/projects/smart")
+def smart_create_project():
+    request_data = request.get_json(silent=True)
+    notes = request_data.get("notes") if isinstance(request_data, dict) else None
+    if not isinstance(notes, str) or len(notes.strip()) < 20:
+        return jsonify({"error": "At least 20 characters of notes are required"}), 400
+
+    author = db.session.execute(db.select(Author).order_by(Author.id)).scalars().first()
+    if author is None:
+        return jsonify({"error": "No project author is available"}), 400
+
+    try:
+        extraction = extract_project(notes.strip())
+    except ModelRefusalError:
+        return jsonify({"error": "The model refused to create a project"}), 422
+    except ProviderUnavailableError:
+        return jsonify({"error": "The AI provider is unavailable"}), 503
+
+    summary = extraction.summary.strip()
+    project = Project(
+        title=extraction.title.strip(),
+        description=summary,
+        summary=summary,
+        technologies=", ".join(
+            technology.strip()
+            for technology in extraction.technologies
+            if technology.strip()
+        ),
         likes=0,
         author_id=author.id,
     )

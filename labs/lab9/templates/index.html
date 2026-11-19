@@ -44,6 +44,11 @@
           <p class="project-count" id="project-count">Showing {{ projects|length }} of {{ projects|length }} projects</p>
         </div>
         <div class="project-create">
+          <label for="smart-notes">Project notes</label>
+          <textarea id="smart-notes" rows="5"></textarea>
+          <button id="smart-create" type="button">Smart create</button>
+        </div>
+        <div class="project-create">
           <label for="new-title">New project title</label>
           <input id="new-title" type="text" />
           <button id="add-project" type="button">Add project</button>
@@ -54,7 +59,6 @@
             <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-copy">{{ project.description }}</p>
             <p class="card-author">By {{ project.author.name }}</p>
-            <!-- hand-edited by AB -->
             {% if project.likes > 10 %}
             <span class="badge">Trending</span>
             {% endif %}
