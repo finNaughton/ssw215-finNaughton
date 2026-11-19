@@ -5,6 +5,49 @@ const newTitleInput = document.querySelector("#new-title");
 const addProjectButton = document.querySelector("#add-project");
 const smartNotesInput = document.querySelector("#smart-notes");
 const smartCreateButton = document.querySelector("#smart-create");
+const repoOwnerInput = document.querySelector("#repo-owner");
+const repoNameInput = document.querySelector("#repo-name");
+const fetchGitHubDraftButton = document.querySelector("#fetch-github-draft");
+const githubDraftPanel = document.querySelector("#github-draft-panel");
+const draftFeedbackInput = document.querySelector("#draft-feedback");
+const sendDraftFeedbackButton = document.querySelector("#send-draft-feedback");
+const approveDraftButton = document.querySelector("#approve-draft");
+
+let gitSessionId = null;
+
+function renderGitHubDraft(draft) {
+  document.querySelector("#draft-title").textContent = `Title: ${draft.title}`;
+  document.querySelector("#draft-summary").textContent = `Summary: ${draft.summary}`;
+  document.querySelector("#draft-technologies").textContent =
+    `Technologies: ${draft.technologies.join(", ")}`;
+  document.querySelector("#draft-difficulty").textContent =
+    `Difficulty: ${draft.difficulty}`;
+  githubDraftPanel.classList.remove("hidden");
+}
+
+function appendProjectCard(project) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.dataset.projectId = project.id;
+  card.innerHTML = `
+    <h3 class="card-title"></h3>
+    <p class="card-copy"></p>
+    <p class="card-author"></p>
+    <p class="card-difficulty"></p>
+    <div class="card-actions">
+      <button class="upvote-btn" type="button">Upvote</button>
+      <span class="like-count"></span>
+    </div>
+  `;
+  card.querySelector(".card-title").textContent = project.title;
+  card.querySelector(".card-copy").textContent = project.summary || project.description;
+  card.querySelector(".card-author").textContent = `By ${project.author}`;
+  card.querySelector(".card-difficulty").textContent =
+    `Difficulty: ${project.difficulty || "Intermediate"}`;
+  card.querySelector(".like-count").textContent = project.likes;
+  projectList.append(card);
+  updateProjectList();
+}
 
 function updateProjectList() {
   const projectCards = Array.from(document.querySelectorAll(".card"));
@@ -73,25 +116,8 @@ addProjectButton.addEventListener("click", async () => {
     }
 
     const project = await response.json();
-    const card = document.createElement("article");
-    card.className = "card";
-    card.dataset.projectId = project.id;
-    card.innerHTML = `
-      <h3 class="card-title"></h3>
-      <p class="card-copy"></p>
-      <p class="card-author"></p>
-      <div class="card-actions">
-        <button class="upvote-btn" type="button">Upvote</button>
-        <span class="like-count"></span>
-      </div>
-    `;
-    card.querySelector(".card-title").textContent = project.title;
-    card.querySelector(".card-copy").textContent = project.description;
-    card.querySelector(".card-author").textContent = `By ${project.author}`;
-    card.querySelector(".like-count").textContent = project.likes;
-    projectList.append(card);
+    appendProjectCard(project);
     newTitleInput.value = "";
-    updateProjectList();
   } catch (error) {
     console.error(error);
   } finally {
@@ -115,28 +141,85 @@ smartCreateButton.addEventListener("click", async () => {
     }
 
     const project = await response.json();
-    const card = document.createElement("article");
-    card.className = "card";
-    card.dataset.projectId = project.id;
-    card.innerHTML = `
-      <h3 class="card-title"></h3>
-      <p class="card-copy"></p>
-      <p class="card-author"></p>
-      <div class="card-actions">
-        <button class="upvote-btn" type="button">Upvote</button>
-        <span class="like-count"></span>
-      </div>
-    `;
-    card.querySelector(".card-title").textContent = project.title;
-    card.querySelector(".card-copy").textContent = project.summary;
-    card.querySelector(".card-author").textContent = `By ${project.author}`;
-    card.querySelector(".like-count").textContent = project.likes;
-    projectList.append(card);
+    appendProjectCard(project);
     smartNotesInput.value = "";
-    updateProjectList();
   } catch (error) {
     console.error(error);
   } finally {
     smartCreateButton.disabled = false;
+  }
+});
+
+fetchGitHubDraftButton.addEventListener("click", async () => {
+  fetchGitHubDraftButton.disabled = true;
+  try {
+    const response = await fetch("/api/projects/git-start", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        owner: repoOwnerInput.value,
+        repo: repoNameInput.value,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`GitHub draft failed with status ${response.status}`);
+    }
+    const result = await response.json();
+    gitSessionId = result.session_id;
+    renderGitHubDraft(result.draft);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    fetchGitHubDraftButton.disabled = false;
+  }
+});
+
+sendDraftFeedbackButton.addEventListener("click", async () => {
+  if (!gitSessionId) {
+    return;
+  }
+  sendDraftFeedbackButton.disabled = true;
+  try {
+    const response = await fetch("/api/projects/git-refine", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: gitSessionId,
+        feedback: draftFeedbackInput.value,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Draft refinement failed with status ${response.status}`);
+    }
+    renderGitHubDraft(await response.json());
+  } catch (error) {
+    console.error(error);
+  } finally {
+    sendDraftFeedbackButton.disabled = false;
+  }
+});
+
+approveDraftButton.addEventListener("click", async () => {
+  if (!gitSessionId) {
+    return;
+  }
+  approveDraftButton.disabled = true;
+  try {
+    const response = await fetch("/api/projects/git-commit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: gitSessionId }),
+    });
+    if (!response.ok) {
+      throw new Error(`Draft approval failed with status ${response.status}`);
+    }
+    const project = await response.json();
+    appendProjectCard(project);
+    githubDraftPanel.classList.add("hidden");
+    gitSessionId = null;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    approveDraftButton.disabled = false;
   }
 });

@@ -48,6 +48,25 @@
           <textarea id="smart-notes" rows="5"></textarea>
           <button id="smart-create" type="button">Smart create</button>
         </div>
+        <div class="project-create github-import">
+          <h3>Import from GitHub</h3>
+          <label for="repo-owner">Repository owner</label>
+          <input id="repo-owner" type="text" />
+          <label for="repo-name">Repository name</label>
+          <input id="repo-name" type="text" />
+          <button id="fetch-github-draft" type="button">Fetch draft</button>
+        </div>
+        <div class="github-draft hidden" id="github-draft-panel" aria-live="polite">
+          <h3>GitHub draft</h3>
+          <p id="draft-title"></p>
+          <p id="draft-summary"></p>
+          <p id="draft-technologies"></p>
+          <p id="draft-difficulty"></p>
+          <label for="draft-feedback">Feedback</label>
+          <textarea id="draft-feedback" rows="4"></textarea>
+          <button id="send-draft-feedback" type="button">Send feedback</button>
+          <button id="approve-draft" type="button">Approve and save</button>
+        </div>
         <div class="project-create">
           <label for="new-title">New project title</label>
           <input id="new-title" type="text" />
@@ -59,6 +78,7 @@
             <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-copy">{{ project.description }}</p>
             <p class="card-author">By {{ project.author.name }}</p>
+            <p class="card-difficulty">Difficulty: {{ project.difficulty }}</p>
             {% if project.likes > 10 %}
             <span class="badge">Trending</span>
             {% endif %}
