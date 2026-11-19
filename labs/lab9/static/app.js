@@ -3,6 +3,8 @@ const projectCount = document.querySelector("#project-count");
 const projectList = document.querySelector(".project-list");
 const newTitleInput = document.querySelector("#new-title");
 const addProjectButton = document.querySelector("#add-project");
+const smartNotesInput = document.querySelector("#smart-notes");
+const smartCreateButton = document.querySelector("#smart-create");
 
 function updateProjectList() {
   const projectCards = Array.from(document.querySelectorAll(".card"));
@@ -77,6 +79,7 @@ addProjectButton.addEventListener("click", async () => {
     card.innerHTML = `
       <h3 class="card-title"></h3>
       <p class="card-copy"></p>
+      <p class="card-author"></p>
       <div class="card-actions">
         <button class="upvote-btn" type="button">Upvote</button>
         <span class="like-count"></span>
@@ -84,6 +87,7 @@ addProjectButton.addEventListener("click", async () => {
     `;
     card.querySelector(".card-title").textContent = project.title;
     card.querySelector(".card-copy").textContent = project.description;
+    card.querySelector(".card-author").textContent = `By ${project.author}`;
     card.querySelector(".like-count").textContent = project.likes;
     projectList.append(card);
     newTitleInput.value = "";
@@ -92,5 +96,47 @@ addProjectButton.addEventListener("click", async () => {
     console.error(error);
   } finally {
     addProjectButton.disabled = false;
+  }
+});
+
+smartCreateButton.addEventListener("click", async () => {
+  smartCreateButton.disabled = true;
+  try {
+    const response = await fetch("/api/projects/smart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ notes: smartNotesInput.value }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Smart project creation failed with status ${response.status}`);
+    }
+
+    const project = await response.json();
+    const card = document.createElement("article");
+    card.className = "card";
+    card.dataset.projectId = project.id;
+    card.innerHTML = `
+      <h3 class="card-title"></h3>
+      <p class="card-copy"></p>
+      <p class="card-author"></p>
+      <div class="card-actions">
+        <button class="upvote-btn" type="button">Upvote</button>
+        <span class="like-count"></span>
+      </div>
+    `;
+    card.querySelector(".card-title").textContent = project.title;
+    card.querySelector(".card-copy").textContent = project.summary;
+    card.querySelector(".card-author").textContent = `By ${project.author}`;
+    card.querySelector(".like-count").textContent = project.likes;
+    projectList.append(card);
+    smartNotesInput.value = "";
+    updateProjectList();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    smartCreateButton.disabled = false;
   }
 });
