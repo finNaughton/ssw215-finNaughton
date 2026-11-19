@@ -127,6 +127,26 @@ def refine_git_draft(session_id: str, feedback: str) -> GitHubDraft:
     return message.parsed
 
 
+def refine_git_draft_blind(session_id: str, feedback: str) -> GitHubDraft:
+    if session_id not in git_sessions:
+        return None
+
+    try:
+        response = client.beta.chat.completions.parse(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": feedback}],
+            response_format=GitHubDraft,
+            temperature=0.1,
+        )
+    except APIError as error:
+        raise ProviderUnavailableError from error
+
+    message = response.choices[0].message
+    if message.refusal or message.parsed is None:
+        raise ModelRefusalError
+    return message.parsed
+
+
 def get_git_draft(session_id: str):
     session = git_sessions.get(session_id)
     if session is None:

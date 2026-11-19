@@ -11,6 +11,7 @@ from ai_service import (
     extract_project,
     create_git_draft,
     refine_git_draft,
+    refine_git_draft_blind,
     get_git_draft,
 )
 from github_service import (
@@ -240,6 +241,27 @@ def git_refine_project():
 
     try:
         draft = refine_git_draft(session_id, feedback)
+    except ModelRefusalError:
+        return jsonify({"error": "The model refused to refine the draft"}), 422
+    except ProviderUnavailableError:
+        return jsonify({"error": "The AI provider is unavailable"}), 503
+
+    return jsonify(draft.model_dump()), 200
+
+
+@app.post("/api/projects/git-refine-blind")
+def git_refine_project_blind():
+    request_data = request.get_json(silent=True)
+    session_id = request_data.get("session_id") if isinstance(request_data, dict) else None
+    feedback = request_data.get("feedback") if isinstance(request_data, dict) else None
+    if not isinstance(session_id, str) or not isinstance(feedback, str):
+        return jsonify({"error": "session_id and feedback are required"}), 400
+
+    if get_git_draft(session_id) is None:
+        return jsonify({"error": "Session not found"}), 404
+
+    try:
+        draft = refine_git_draft_blind(session_id, feedback)
     except ModelRefusalError:
         return jsonify({"error": "The model refused to refine the draft"}), 422
     except ProviderUnavailableError:
