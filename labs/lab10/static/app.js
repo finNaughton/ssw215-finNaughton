@@ -11,6 +11,7 @@ const fetchGitHubDraftButton = document.querySelector("#fetch-github-draft");
 const githubDraftPanel = document.querySelector("#github-draft-panel");
 const draftFeedbackInput = document.querySelector("#draft-feedback");
 const sendDraftFeedbackButton = document.querySelector("#send-draft-feedback");
+const sendDraftFeedbackBlindButton = document.querySelector("#send-draft-feedback-blind");
 const approveDraftButton = document.querySelector("#approve-draft");
 
 let gitSessionId = null;
@@ -196,6 +197,31 @@ sendDraftFeedbackButton.addEventListener("click", async () => {
     console.error(error);
   } finally {
     sendDraftFeedbackButton.disabled = false;
+  }
+});
+
+sendDraftFeedbackBlindButton.addEventListener("click", async () => {
+  if (!gitSessionId) {
+    return;
+  }
+  sendDraftFeedbackBlindButton.disabled = true;
+  try {
+    const response = await fetch("/api/projects/git-refine-blind", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: gitSessionId,
+        feedback: draftFeedbackInput.value,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Blind draft refinement failed with status ${response.status}`);
+    }
+    renderGitHubDraft(await response.json());
+  } catch (error) {
+    console.error(error);
+  } finally {
+    sendDraftFeedbackBlindButton.disabled = false;
   }
 });
 
